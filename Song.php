@@ -17,11 +17,31 @@ class Song
     {
         $query = 'SELECT * FROM song';
         $pdo = $this->pdo;
-        var_dump($pdo);
         $results = $pdo->prepare($query);
-        var_dump($results->rowCount());
         $results->execute();
-        var_dump($results->rowCount());
         return $results->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getAllSongsFromArtist(string $id)
+    {
+        $query = 'SELECT * FROM song WHERE artist_id = :id';
+        $pdo = $this->pdo;
+        $results = $pdo->prepare($query);
+        $results->execute([
+            'id' => $id
+        ]);
+        return $results->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getOneSong(string $name)
+    {
+        $query = 'SELECT * FROM song WHERE name LIKE :songName';
+        $pdo = $this->pdo;
+        $results = $pdo->prepare($query);
+        $results->execute([
+            ':songName' => '%'.$name.'%'
+        ]);
+        return $results->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

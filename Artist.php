@@ -31,7 +31,7 @@ class Artist
         $results->execute([
             'artist_id' => $id
         ]);
-        return $results->fetchAll(PDO::FETCH_ASSOC);
+        return $results->fetch(PDO::FETCH_ASSOC);
     }
 
     public function addArtist(string $name, string $birthDate)

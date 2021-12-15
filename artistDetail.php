@@ -2,6 +2,7 @@
 
 include "header.php";
 include "Artist.php";
+include "Song.php";
 
 if (isset($_GET['artistId'])) {
     $id = $_GET['artistId'];
@@ -19,32 +20,40 @@ $artistDetail = (new Artist())->artistDetail($id);
                 <th>Name</th>
                 <th>Age</th>
                 <th>Songs</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
-            <?php
-            foreach ($artistDetail as $artist) {
-                ?>
                 <tr>
                     <td> <?php
-                        echo $artist['id']
+                        echo $artistDetail['id']
                         ?>
                     </td>
                     <td><?php
-                        echo $artist['name']
+                        echo $artistDetail['name']
                         ?>
                     </td>
                     <td><?php
-                        echo $artist['age']
+                        echo $artistDetail['age']
                         ?>
                     </td>
                     <td>
+                        <?php
+                        $artistSongs = (new Song())->getAllSongsFromArtist($artistDetail['id']);
+                        if (!empty($artistSongs)){
+                            foreach ($artistSongs as $song) {
+                                echo $song['title'];
+                                echo '<br>';
+                            }} else{
+                             echo "L'artiste n'a pas de musique.";
+                            }
 
+                        ?>
+                    </td>
+                    <td>
+                        <a href="songDelete.php?delete=<?php echo $song['id'] ?>" class="btn btn-danger">Supprimer les chansons ?</a>
                     </td>
                 </tr>
-                <?php
-            }
-            ?>
             </tbody>
         </table>
         <div>
