@@ -33,15 +33,25 @@ class Song
         return $results->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getOneSong(string $name)
+    public function searchSong(string $name)
     {
-        $query = 'SELECT * FROM song WHERE name LIKE :songName';
+        $query = 'SELECT * FROM song WHERE title LIKE :songName';
         $pdo = $this->pdo;
         $results = $pdo->prepare($query);
         $results->execute([
             ':songName' => '%'.$name.'%'
         ]);
         return $results->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function removeSong(string $id)
+    {
+        $query = 'DELETE FROM `song` WHERE `id` = :song_id ';
+
+        $results = $this->pdo->prepare($query);
+        $results->execute([
+            'song_id' => $id
+        ]);
     }
 
 }

@@ -61,11 +61,11 @@ $artistList = (new Artist())->artistList();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Etes-vous sur de supprimer cet artiste ?
+                    Etes-vous sur de vouloir supprimer cet artiste ainsi que ses chansons ?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
-                    <a href="artistDelete.php?delete=<?php echo $artist['id'] ?>" class="btn btn-danger">Oui, supprimer l'artiste</a>
+                    <a href="artistDelete.php?delete=<?php echo $artist['id'] ?>" class="btn btn-danger">Oui, supprimer l'artiste et ses chansons</a>
                 </div>
             </div>
         </div>

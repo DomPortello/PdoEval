@@ -33,9 +33,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="songList.php">Liste des chansons</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="artistForm.php.php">Ajouter une chanson</a>
-                </li>
             </ul>
         </div>
     </div>
