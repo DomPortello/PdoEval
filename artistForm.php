@@ -5,7 +5,7 @@ include 'Artist.php';
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $artistDetail = (new Artist())->artistDetail($id);
-    $age = $artistDetail[0]['age'];
+    $age = $artistDetail['age'];
     $date = (new DateTime())->modify("- $age years");
 }
 ?>
@@ -29,12 +29,12 @@ if (isset($_GET['edit'])) {
 
             <label for="name"><i class="fas fa-user m-2"></i>Name</label>
             <input id="name" type="text" name="artistName" value="<?php if (isset($_GET['edit'])) {
-                echo $artistDetail[0]['name'];
+                echo $artistDetail['name'];
             } ?>" class="form-control mb-4">
 
             <label for="age"><i class="fas fa-calendar-day m-2"></i>Date de naissance</label>
             <input id="age" type="date" name="age" value="<?php if (isset($_GET['edit'])) {
-                echo $date->format('Y-m-d'); //TODO date dans la value en édition
+                echo $date->format('Y-m-d'); //TODO date a partir d'un chiffre = A FIX
             } ?>" class="form-control mb-4">
 
             <button class="btn btn-success" type="submit">Valider</button>
@@ -42,7 +42,7 @@ if (isset($_GET['edit'])) {
             if (isset($_GET['edit'])) {
                 ?>
                 <input type="hidden" value="<?php if (isset($_GET['edit'])) {
-                    echo $artistDetail[0]['id'];
+                    echo $artistDetail['id'];
                 } ?>" name="edit">
                 <?php
             }
